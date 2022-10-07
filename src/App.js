@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import './App.css';
+import Header from './Components/Header'
+import Search from './Components/Search'
+import LocationDetails from './Components/LocationDetails'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: null,
-      loading: false
+      loading: null,
+      date: new Date()
     };
     this.apiCall = this.apiCall.bind(this);
   }
@@ -21,8 +25,12 @@ class App extends React.Component {
         return response.json();
       })
       .then((json) => {
-        console.log(json);
-      });
+        console.log(json.main.temp);
+        this.setState({
+          data: json.main.temp
+        }, () =>
+          console.log(this.state.date))
+      })
   }
 
   componentDidMount() {
@@ -31,18 +39,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid bg-info vh-100 vw-100 d-flex flex-column align-items-center justify-content-center p-5">
-        <div className="row flex-grow-1">
-          <div className="col-12">
-            <div className="d-flex">
-              <input className="form-control shadow-none" placeholder="Enter a city..."></input>
-              <button className="btn btn-success shadow-none" onClick={this.apiCall}>Test</button></div>
-          </div>
-        </div>
-        <div className="row flex-grow-1">
-          <div className="col-12">
-          </div>
-        </div>
+      <div className="container-fluid bg-info vh-100 vw-100 d-flex flex-column align-items-center justify-content-center p-3">
+        <Header />
+        <Search />
+        <LocationDetails data={this.state.data} />
       </div>
     );
   }
