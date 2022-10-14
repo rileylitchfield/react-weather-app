@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class CurrentWeather extends Component {
+class Details extends Component {
     constructor(props) {
         super(props);
     }
@@ -8,10 +8,7 @@ class CurrentWeather extends Component {
         return (
             <div className="w-100 d-flex align-items-center justify-content-center">
                 <div className="row d-flex align-items-center p-1">
-                    <div className="col-3">
-                        <p className="mb-0">Image</p>
-                    </div>
-                    <div className="col-3">
+                    <div className="col-6">
                         <p className="mb-0">{Math.round(this.props.main.temp)} °F</p>
                     </div>
                     <div className="col-6">
@@ -23,7 +20,7 @@ class CurrentWeather extends Component {
                                 <p className="my-1">Humidity: {Math.round(this.props.main.humidity)}%</p>
                             </div>
                             <div className="col-12">
-                                <p className="my-1">Humidity: {Math.round(this.props.wind.speed)} MPH</p>
+                                <p className="my-1">Wind Speed: {Math.round(this.props.wind.speed)} MPH</p>
                             </div>
                         </div>
                     </div>
@@ -33,4 +30,4 @@ class CurrentWeather extends Component {
     }
 }
 
-export default CurrentWeather;
+export default Details;

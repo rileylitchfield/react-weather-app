@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class LocationDetails extends Component {
+class MainInfo extends Component {
     constructor(props) {
         super(props);
     }
@@ -18,11 +18,6 @@ class LocationDetails extends Component {
             <div>
                 <div className="row">
                     <div className="col-12">
-                        <p className="lead text-center">{this.props.date.toDateString()}</p>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12">
                         <h2 className="text-center">{this.props.city}</h2>
                     </div>
                 </div>
@@ -31,9 +26,14 @@ class LocationDetails extends Component {
                         <h5 className="text-center p-4">{descriptionUpper}</h5>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-12">
+                        <h1 className="text-center">{Math.round(this.props.main.temp)} °F</h1>
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
-export default LocationDetails;
+export default MainInfo;
