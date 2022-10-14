@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 
-class Weather extends Component {
+class LocationDetails extends Component {
     constructor(props) {
         super(props);
     }
     render() {
-        if (this.props.description !== '') {
-            const description = this.props.description.split(" ");
+        // Convert weather description to title case
+        if (this.props.weather !== null) {
+            const description = this.props.weather['0']['description'].split(" ");
 
             var descriptionUpper = description.map((word) => {
                 return word[0].toUpperCase() + word.substring(1);
             }).join(" ");
-            console.log(descriptionUpper)
         }
 
         return (
@@ -36,4 +36,4 @@ class Weather extends Component {
     }
 }
 
-export default Weather;
+export default LocationDetails;

@@ -3,12 +3,15 @@ import './App.css';
 import Header from './Components/Header'
 import Search from './Components/Search'
 import LocationDetails from './Components/LocationDetails'
+import CurrentWeather from './Components/CurrentWeather'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null,
+      weather: null,
+      main: '',
+      wind: '',
       weatherDescription: '',
       loading: null,
       city: 'City Name',
@@ -19,7 +22,7 @@ class App extends React.Component {
 
   // Fetch data from OpenWeatherAPI
   apiCall() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=50&lon=50&appid=1bc5008f210ae0aac20c8d13e30e378a&units=imperial`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=houston&appid=1bc5008f210ae0aac20c8d13e30e378a&units=imperial`)
       .then((response) => {
         this.setState({
           loading: true
@@ -27,13 +30,14 @@ class App extends React.Component {
         return response.json();
       })
       .then((json) => {
-        console.log(json.weather['0']['description']);
+
         this.setState({
-          data: json.main.temp,
+          weather: json.weather,
+          main: json.main,
+          wind: json.wind,
           city: json.name,
           weatherDescription: json.weather['0']['description']
-        }, () =>
-          console.log(this.state.data))
+        })
       })
   }
 
@@ -43,10 +47,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid bg-info vh-100 vw-100 d-flex flex-column align-items-center justify-content-center p-3">
+      <div className="container-fluid bg-primary vh-100 vw-100 d-flex flex-column align-items-center justify-content-around p-3">
         <Header />
         <Search />
-        <LocationDetails data={this.state.data} date={this.state.date} city={this.state.city} description={this.state.weatherDescription} />
+        <LocationDetails date={this.state.date} city={this.state.city} weather={this.state.weather} />
+        <CurrentWeather main={this.state.main} wind={this.state.wind} />
       </div>
     );
   }

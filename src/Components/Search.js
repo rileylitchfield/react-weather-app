@@ -6,11 +6,11 @@ class Search extends Component {
     }
     render() {
         return (
-            <div className="row h-25">
+            <div className="row">
                 <div className="col-12">
                     <div className="d-flex">
-                        <input className="form-control shadow-none" placeholder="Enter a city..."></input>
-                        <button className="btn btn-success shadow-none" onClick={this.apiCall}>Test</button></div>
+                        <input className="form-control shadow-none mx-1" placeholder="Enter a city..."></input>
+                        <button className="btn btn-light shadow-none mx-1" onClick={this.apiCall}>Test</button></div>
                 </div>
             </div>
         );
