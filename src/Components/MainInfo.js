@@ -16,9 +16,9 @@ class MainInfo extends Component {
 
         return (
             <div>
-                {this.props.main !== '' &&
+                {this.props.main != '' &&
                     <div>
-                        <div className="row">
+                        <div className="row py-3">
                             <div className="col-12">
                                 <h2 className="text-center">{this.props.cityInput == '' && this.props.cityDefault !== '' ? this.props.cityDefault :
                                     this.props.city}</h2>

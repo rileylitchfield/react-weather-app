@@ -6,7 +6,7 @@ class Search extends Component {
     }
     render() {
         return (
-            <div className="row">
+            <div className="row py-3">
                 <div className="col-12">
                     <div className="d-flex">
                         <input className="form-control shadow-none mx-1" placeholder="Enter a city..." onKeyDown={this.props.onKeyDownHandler} value={this.props.cityInput == '' ? '' : this.props.cityInput} onChange={this.props.handleChange}></input>

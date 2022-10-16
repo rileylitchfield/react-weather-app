@@ -4,6 +4,7 @@ import Header from './Components/Header'
 import Search from './Components/Search'
 import MainInfo from './Components/MainInfo'
 import Details from './Components/Details'
+import load from './img/load.png'
 
 class App extends React.Component {
   constructor(props) {
@@ -60,7 +61,8 @@ class App extends React.Component {
         weather: res[0].weather,
         main: res[0].main,
         wind: res[0].wind,
-        city: res[0].name
+        city: res[0].name,
+        loading: false
       })
     });
   }
@@ -72,11 +74,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid bg-primary vh-100 vw-100 d-flex flex-column align-items-center justify-content-around p-3">
+      <div className="container-fluid bg-primary vh-100 vw-100 d-flex flex-column align-items-center justify-content-start p-3">
         <Header />
         <Search cityInput={this.state.cityInput} apiCall={this.apiCall} handleChange={this.handleChange} onKeyDownHandler={this.onKeyDownHandler} />
-        <MainInfo main={this.state.main} date={this.state.date} city={this.state.city} cityInput={this.state.cityInput} cityDefault={this.state.cityDefault} weather={this.state.weather} />
-        <Details main={this.state.main} wind={this.state.wind} />
+        {this.state.loading ? <a target="_blank" href="https://icons8.com/icon/2969/settings"><img src={load} className='spinning' style={{ width: 100 }} /></a> : <div>
+          <MainInfo main={this.state.main} date={this.state.date} city={this.state.city} cityInput={this.state.cityInput} cityDefault={this.state.cityDefault} weather={this.state.weather} />
+          <Details main={this.state.main} wind={this.state.wind} /></div>}
       </div>
     );
   }

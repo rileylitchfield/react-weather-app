@@ -6,8 +6,8 @@ class Details extends Component {
     }
     render() {
         return (
-            <div className="w-100 d-flex align-items-center justify-content-center">
-                {this.props.main !== '' && this.props.wind !== '' &&
+            <div className="w-100 d-flex align-items-center justify-content-center py-3">
+                {this.props.main != '' && this.props.wind != '' &&
                     <div className="row d-flex align-items-center p-1">
                         <div className="col-6">
                             <p className="mb-0 text-end">{Math.round(this.props.main.temp)} °F</p>
