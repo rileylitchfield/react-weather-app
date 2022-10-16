@@ -12,12 +12,20 @@ class App extends React.Component {
       weather: null,
       main: '',
       wind: '',
-      weatherDescription: '',
       loading: null,
+      cityInput: 'Houston',
       city: 'City Name',
       date: new Date()
     };
     this.apiCall = this.apiCall.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      cityInput: event.target.value
+    })
+    console.log(this.state.cityInput)
   }
 
   // Fetch data from OpenWeatherAPI
@@ -27,7 +35,7 @@ class App extends React.Component {
     })
 
     const currentWeather = fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=houston&appid=1bc5008f210ae0aac20c8d13e30e378a&units=imperial`
+      `https://api.openweathermap.org/data/2.5/weather?q=${this.state.cityInput}&appid=1bc5008f210ae0aac20c8d13e30e378a&units=imperial`
     ).then((res) => res.json());
 
     const futureWeather = fetch(
@@ -42,25 +50,9 @@ class App extends React.Component {
         weather: res[0].weather,
         main: res[0].main,
         wind: res[0].wind,
-        city: res[0].name,
-        weatherDescription: res[0].weather['0']['description']
+        city: res[0].name
       })
     });
-
-    // fetch(`https://api.openweathermap.org/data/2.5/weather?q=houston&appid=1bc5008f210ae0aac20c8d13e30e378a&units=imperial`)
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((json) => {
-
-    //     this.setState({
-    //       weather: json.weather,
-    //       main: json.main,
-    //       wind: json.wind,
-    //       city: json.name,
-    //       weatherDescription: json.weather['0']['description']
-    //     })
-    //   })
   }
 
   componentDidMount() {
