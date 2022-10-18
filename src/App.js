@@ -4,6 +4,7 @@ import Header from './Components/Header'
 import Search from './Components/Search'
 import MainInfo from './Components/MainInfo'
 import Details from './Components/Details'
+import Hourly from './Components/Hourly'
 import load from './img/load.png'
 
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
       cityDefault: 'New York',
       cityInput: '',
       city: '',
+      hourlyList: [],
       date: new Date()
     };
     this.apiCall = this.apiCall.bind(this);
@@ -50,19 +52,21 @@ class App extends React.Component {
     ).then((res) => res.json());
 
     const futureWeather = fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=houston&appid=af8a61902c630163996ad1a6ca83b265&units=imperial`
+      `https://api.openweathermap.org/data/2.5/forecast?q=houston&cnt=8&appid=af8a61902c630163996ad1a6ca83b265&units=imperial`
     ).then((res) => res.json());
 
     const allData = Promise.all([currentWeather, futureWeather]);
 
     // attach then() handler to the allData Promise
     allData.then((res) => {
+      console.log(res[1]);
       this.setState({
         weather: res[0].weather,
         main: res[0].main,
         wind: res[0].wind,
         city: res[0].name,
-        loading: false
+        loading: false,
+        hourlyList: res[1].list
       })
     });
   }
@@ -79,6 +83,7 @@ class App extends React.Component {
         <Search cityInput={this.state.cityInput} apiCall={this.apiCall} handleChange={this.handleChange} onKeyDownHandler={this.onKeyDownHandler} />
         {this.state.loading ? <a target="_blank" href="https://icons8.com/icon/2969/settings"><img src={load} className='spinning' style={{ width: 100 }} /></a> : <div>
           <MainInfo main={this.state.main} date={this.state.date} city={this.state.city} cityInput={this.state.cityInput} cityDefault={this.state.cityDefault} weather={this.state.weather} />
+          <Hourly list={this.state.hourlyList} />
           <Details main={this.state.main} wind={this.state.wind} /></div>}
       </div>
     );
