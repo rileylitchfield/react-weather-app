@@ -14,6 +14,7 @@ class App extends React.Component {
       weather: null,
       main: '',
       wind: '',
+      sys: '',
       loading: null,
       cityDefault: 'New York',
       cityInput: '',
@@ -65,6 +66,7 @@ class App extends React.Component {
         main: res[0].main,
         wind: res[0].wind,
         city: res[0].name,
+        sys: res[0].sys,
         loading: false,
         hourlyList: res[1].list
       })
@@ -84,7 +86,7 @@ class App extends React.Component {
         {this.state.loading ? <a target="_blank" href="https://icons8.com/icon/2969/settings"><img src={load} className='spinning' style={{ width: 100 }} /></a> : <div>
           <MainInfo main={this.state.main} date={this.state.date} city={this.state.city} cityInput={this.state.cityInput} cityDefault={this.state.cityDefault} weather={this.state.weather} />
           <Hourly list={this.state.hourlyList} />
-          <Details main={this.state.main} wind={this.state.wind} /></div>}
+          <Details main={this.state.main} wind={this.state.wind} sys={this.state.sys} /></div>}
       </div>
     );
   }

@@ -5,15 +5,14 @@ class Hourly extends Component {
         super(props);
     }
     render() {
-        var tempList = this.props.list.map((item) => {
-            return <div className="col" key={this.props.list.indexOf(item)}>
-                <p className="text-center" style={{ whiteSpace: 'nowrap' }}>{item.main.temp} °F</p>
-            </div>
-        })
         return (
-            <div className="py-3">
+            <div className="vw-100 d-flex align-items-center justify-content-center py-3">
                 <div className="row hourly flex-nowrap">
-                    {tempList}
+                    {this.props.list.map((item) => {
+                        return <div className="col px-4" key={this.props.list.indexOf(item)}>
+                            <p className="text-center" style={{ whiteSpace: 'nowrap' }}>{Math.round(item.main.temp)} °F</p>
+                        </div>
+                    })}
                 </div>
             </div>
         );
