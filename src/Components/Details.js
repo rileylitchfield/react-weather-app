@@ -6,7 +6,7 @@ class Details extends Component {
     }
     render() {
         return (
-            <div className="w-100 d-flex align-items-center justify-content-center p-3">
+            <div className="w-100 w-md-20 d-flex align-items-center justify-content-center p-3">
                 {this.props.main != '' && this.props.wind != '' &&
                     <div className="w-100">
                         <div className="row p-1 border-top border-bottom">

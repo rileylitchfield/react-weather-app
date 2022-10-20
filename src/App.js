@@ -88,8 +88,8 @@ class App extends React.Component {
     let min = a.getMinutes();
     let ampm = 'am';
     if (hour > 12) { hour = hour - 12; ampm = 'pm' }
-    if (min == 0) {
-      min += '0'
+    if (min < 10) {
+      min = '0' + min;
     }
     let time = hour + ':' + min;
     return time + ampm;
@@ -100,7 +100,7 @@ class App extends React.Component {
       <div className="container-fluid bg-primary vh-100 vw-100 d-flex flex-column align-items-center justify-content-start p-3">
         <Header />
         <Search cityInput={this.state.cityInput} apiCall={this.apiCall} handleChange={this.handleChange} onKeyDownHandler={this.onKeyDownHandler} />
-        {this.state.loading ? <a target="_blank" href="https://icons8.com/icon/2969/settings"><img src={load} className='spinning' style={{ width: 100 }} /></a> : <div>
+        {this.state.loading ? <a target="_blank" href="https://icons8.com/icon/2969/settings"><img src={load} className='spinning' style={{ width: 100 }} /></a> : <div className="d-flex flex-column align-items-center justify-content-center">
           <MainInfo main={this.state.main} date={this.state.date} city={this.state.city} cityInput={this.state.cityInput} cityDefault={this.state.cityDefault} weather={this.state.weather} />
           <Hourly list={this.state.hourlyList} timeConverter={this.timeConverter} />
           <Details main={this.state.main} wind={this.state.wind} sys={this.state.sys} timeConverter={this.timeConverter} rain={this.state.rain} /></div>}

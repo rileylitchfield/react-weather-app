@@ -30,3 +30,9 @@ input:focus {
     overflow-x: scroll;
   }
 }
+
+@media screen and (min-width: 800px) {
+  .w-md-20 {
+    max-width: 20%;
+  }
+}

@@ -8,7 +8,6 @@ class MainInfo extends Component {
         // Convert weather description to title case
         if (this.props.weather !== null) {
             const description = this.props.weather['0']['description'].split(" ");
-
             var descriptionUpper = description.map((word) => {
                 return word[0].toUpperCase() + word.substring(1);
             }).join(" ");
