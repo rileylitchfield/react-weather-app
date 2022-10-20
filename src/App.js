@@ -6,6 +6,7 @@ import MainInfo from './Components/MainInfo'
 import Details from './Components/Details'
 import Hourly from './Components/Hourly'
 import load from './img/load.png'
+import apikey from './apikey'
 
 class App extends React.Component {
   constructor(props) {
@@ -52,11 +53,11 @@ class App extends React.Component {
     })
 
     const currentWeather = fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${this.state.cityInput == '' ? this.state.cityDefault : this.state.cityInput}&appid=af8a61902c630163996ad1a6ca83b265&units=imperial`
+      `https://api.openweathermap.org/data/2.5/weather?q=${this.state.cityInput == '' ? this.state.cityDefault : this.state.cityInput}&appid=${apikey}&units=imperial`
     ).then((res) => res.json());
 
     const futureWeather = fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=houston&cnt=8&appid=af8a61902c630163996ad1a6ca83b265&units=imperial`
+      `https://api.openweathermap.org/data/2.5/forecast?q=houston&cnt=8&appid=${apikey}&units=imperial`
     ).then((res) => res.json());
 
     const allData = Promise.all([currentWeather, futureWeather]);
