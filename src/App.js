@@ -15,6 +15,7 @@ class App extends React.Component {
       main: '',
       wind: '',
       sys: '',
+      rain: null,
       loading: null,
       cityDefault: 'New York',
       cityInput: '',
@@ -25,6 +26,8 @@ class App extends React.Component {
     this.apiCall = this.apiCall.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onKeyDownHandler = this.onKeyDownHandler.bind(this);
+    this.timeConverter = this.timeConverter.bind(this);
+    // this.timeFixer = this.timeFixer.bind(this);
   }
 
   // Update input state when input is updated from user
@@ -58,7 +61,6 @@ class App extends React.Component {
 
     const allData = Promise.all([currentWeather, futureWeather]);
 
-    // attach then() handler to the allData Promise
     allData.then((res) => {
       console.log(res[1]);
       this.setState({
@@ -67,6 +69,7 @@ class App extends React.Component {
         wind: res[0].wind,
         city: res[0].name,
         sys: res[0].sys,
+        rain: res[0].rain,
         loading: false,
         hourlyList: res[1].list
       })
@@ -78,6 +81,20 @@ class App extends React.Component {
     this.apiCall();
   }
 
+  // Convert time from UNIX to HH:MM
+  timeConverter(UNIX_timestamp) {
+    let a = new Date(UNIX_timestamp * 1000);
+    let hour = a.getHours();
+    let min = a.getMinutes();
+    let ampm = 'am';
+    if (hour > 12) { hour = hour - 12; ampm = 'pm' }
+    if (min == 0) {
+      min += '0'
+    }
+    let time = hour + ':' + min;
+    return time + ampm;
+  }
+
   render() {
     return (
       <div className="container-fluid bg-primary vh-100 vw-100 d-flex flex-column align-items-center justify-content-start p-3">
@@ -85,8 +102,8 @@ class App extends React.Component {
         <Search cityInput={this.state.cityInput} apiCall={this.apiCall} handleChange={this.handleChange} onKeyDownHandler={this.onKeyDownHandler} />
         {this.state.loading ? <a target="_blank" href="https://icons8.com/icon/2969/settings"><img src={load} className='spinning' style={{ width: 100 }} /></a> : <div>
           <MainInfo main={this.state.main} date={this.state.date} city={this.state.city} cityInput={this.state.cityInput} cityDefault={this.state.cityDefault} weather={this.state.weather} />
-          <Hourly list={this.state.hourlyList} />
-          <Details main={this.state.main} wind={this.state.wind} sys={this.state.sys} /></div>}
+          <Hourly list={this.state.hourlyList} timeConverter={this.timeConverter} />
+          <Details main={this.state.main} wind={this.state.wind} sys={this.state.sys} timeConverter={this.timeConverter} rain={this.state.rain} /></div>}
       </div>
     );
   }

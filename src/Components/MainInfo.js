@@ -18,15 +18,15 @@ class MainInfo extends Component {
             <div>
                 {this.props.main != '' &&
                     <div>
-                        <div className="row py-3">
+                        <div className="row pt-5 pb-4">
                             <div className="col-12">
-                                <h2 className="text-center">{this.props.cityInput == '' && this.props.cityDefault !== '' ? this.props.cityDefault :
+                                <h2 className="text-center my-0">{this.props.cityInput == '' && this.props.cityDefault !== '' ? this.props.cityDefault :
                                     this.props.city}</h2>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-12">
-                                <h5 className="text-center p-4">{descriptionUpper}</h5>
+                                <h6 className="text-center p-2">{descriptionUpper}</h6>
                             </div>
                         </div>
                         <div className="row">

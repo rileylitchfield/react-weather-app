@@ -5,30 +5,51 @@ class Details extends Component {
         super(props);
     }
     render() {
-        function timeConverter(UNIX_timestamp) {
-            let a = new Date(UNIX_timestamp * 1000);
-            let hour = a.getHours();
-            if (hour > 12) { hour = hour - 12 }
-            let min = a.getMinutes();
-            let time = hour + ':' + min;
-            return time;
-        }
-        console.log(timeConverter(0));
         return (
-            <div className="w-100 max-vw-90 d-flex align-items-center justify-content-center">
+            <div className="w-100 d-flex align-items-center justify-content-center p-3">
                 {this.props.main != '' && this.props.wind != '' &&
-                    <div className="row w-100 d-flex align-items-center p-1 border-top border-bottom">
-                        <div className="col-6 p-0">
-                            <p className="my-1 text-start">
-                                <span className="fw-light">Sunrise: </span>
-                                {timeConverter(this.props.sys.sunrise)}<span style={{ fontSize: '0.8rem' }}>AM</span>
-                            </p>
+                    <div className="w-100">
+                        <div className="row p-1 border-top border-bottom">
+                            <div className="col-6 p-0">
+                                <p className="my-1 text-start">
+                                    <span className="fw-light">Sunrise: </span>
+                                    {this.props.timeConverter(this.props.sys.sunrise)}
+                                </p>
+                            </div>
+                            <div className="col-6 p-0">
+                                <p className="my-1 text-start">
+                                    <span className="fw-light">Sunset: </span>
+                                    {this.props.timeConverter(this.props.sys.sunset)}
+                                </p>
+                            </div>
                         </div>
-                        <div className="col-6 p-0">
-                            <p className="my-1 text-start">
-                                <span className="fw-light">Sunset: </span>
-                                {timeConverter(this.props.sys.sunset)}<span style={{ fontSize: '0.8rem' }}>PM</span>
-                            </p>
+                        <div className="row p-1 border-bottom">
+                            <div className="col-6 p-0">
+                                <p className="my-1 text-start">
+                                    <span className="fw-light">Humidity: </span>
+                                    {this.props.main.humidity}%
+                                </p>
+                            </div>
+                            <div className="col-6 p-0">
+                                <p className="my-1 text-start">
+                                    <span className="fw-light">Wind: </span>
+                                    {Math.round(this.props.wind.speed)} mph
+                                </p>
+                            </div>
+                        </div>
+                        <div className="row p-1 border-bottom">
+                            <div className="col-6 p-0">
+                                <p className="my-1 text-start">
+                                    <span className="fw-light">Feels like: </span>
+                                    {Math.round(this.props.main.feels_like)} °F
+                                </p>
+                            </div>
+                            <div className="col-6 p-0">
+                                <p className="my-1 text-start">
+                                    <span className="fw-light">Pressure: </span>
+                                    {(this.props.main.pressure * 0.02953).toFixed(1)} inHg
+                                </p>
+                            </div>
                         </div>
                     </div>
                 }

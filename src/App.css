@@ -29,8 +29,4 @@ input:focus {
     width: 100%;
     overflow-x: scroll;
   }
-
-  .max-vw-90 {
-    max-width: 90vw;
-  }
 }
