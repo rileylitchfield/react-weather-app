@@ -6,7 +6,7 @@ import MainInfo from './Components/MainInfo'
 import Details from './Components/Details'
 import Hourly from './Components/Hourly'
 import load from './img/load.png'
-// import apikey from './apikey'
+import apikey from './apikey'
 
 class App extends React.Component {
   constructor(props) {
