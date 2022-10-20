@@ -57,7 +57,7 @@ class App extends React.Component {
     ).then((res) => res.json());
 
     const futureWeather = fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=houston&cnt=8&appid=${apikey}&units=imperial`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${this.state.cityInput == '' ? this.state.cityDefault : this.state.cityInput}&cnt=8&appid=${apikey}&units=imperial`
     ).then((res) => res.json());
 
     const allData = Promise.all([currentWeather, futureWeather]);
