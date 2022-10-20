@@ -64,16 +64,23 @@ class App extends React.Component {
 
     allData.then((res) => {
       console.log(res[1]);
-      this.setState({
-        weather: res[0].weather,
-        main: res[0].main,
-        wind: res[0].wind,
-        city: res[0].name,
-        sys: res[0].sys,
-        rain: res[0].rain,
-        loading: false,
-        hourlyList: res[1].list
-      })
+      if (res[0].cod == '200' && res[1].cod == '200') {
+        this.setState({
+          weather: res[0].weather,
+          main: res[0].main,
+          wind: res[0].wind,
+          city: res[0].name,
+          sys: res[0].sys,
+          rain: res[0].rain,
+          loading: false,
+          hourlyList: res[1].list
+        })
+      } else {
+        this.setState({
+          loading: false
+        });
+        alert('City not found. Check spelling or try another city.');
+      }
     });
   }
 
