@@ -3,6 +3,10 @@
   color: #fff;
 }
 
+.container-fluid {
+  min-height: 100vh;
+}
+
 /* Remove default outlines from inputs */
 input:focus {
   outline: none;

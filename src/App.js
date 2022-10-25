@@ -105,7 +105,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid bg-primary vh-100 vw-100 d-flex flex-column align-items-center justify-content-start p-3">
+      <div className="container-fluid bg-primary h-100 vw-100 d-flex flex-column align-items-center justify-content-start p-3">
         <Header />
         <Search cityInput={this.state.cityInput} apiCall={this.apiCall} handleChange={this.handleChange} onKeyDownHandler={this.onKeyDownHandler} />
         {this.state.loading ? <a target="_blank" href="https://icons8.com/icon/2969/settings"><img src={load} className='spinning' style={{ width: 100 }} /></a> : <div className="d-flex flex-column align-items-center justify-content-center">
