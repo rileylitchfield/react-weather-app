@@ -13,13 +13,13 @@ class Details extends Component {
                             <div className="col-6 p-0">
                                 <p className="my-1 text-start">
                                     <span className="fw-light">Sunrise: </span>
-                                    {this.props.timeConverter(this.props.sys.sunrise)}
+                                    {this.props.timeConverter(this.props.sys.sunrise, 'time', 'hh:mm')}
                                 </p>
                             </div>
                             <div className="col-6 p-0">
                                 <p className="my-1 text-start">
                                     <span className="fw-light">Sunset: </span>
-                                    {this.props.timeConverter(this.props.sys.sunset)}
+                                    {this.props.timeConverter(this.props.sys.sunset, 'time', 'hh:mm')}
                                 </p>
                             </div>
                         </div>

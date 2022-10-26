@@ -10,7 +10,7 @@ class Search extends Component {
                 <div className="col-12">
                     <div className="d-flex">
                         <input className="form-control shadow-none mx-1" placeholder="Enter a city..." onKeyDown={this.props.onKeyDownHandler} value={this.props.cityInput == '' ? '' : this.props.cityInput} onChange={this.props.handleChange}></input>
-                        <button className="btn btn-light shadow-none mx-1" onClick={this.props.apiCall}>Test</button></div>
+                        <button className="btn btn-light shadow-none mx-1" onClick={this.props.apiCall}>Search</button></div>
                 </div>
             </div>
         );

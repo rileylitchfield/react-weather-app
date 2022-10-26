@@ -90,17 +90,21 @@ class App extends React.Component {
   }
 
   // Convert time from UNIX to HH:MM
-  timeConverter(UNIX_timestamp) {
-    let a = new Date(UNIX_timestamp * 1000);
-    let hour = a.getHours();
-    let min = a.getMinutes();
+  timeConverter(UNIX_timestamp, type, format) {
+    let weatherDate = new Date(UNIX_timestamp * 1000);
+    let hour = weatherDate.getHours();
+    let min = weatherDate.getMinutes();
     let ampm = 'am';
-    if (hour > 12) { hour = hour - 12; ampm = 'pm' }
+    if (weatherDate.getHours() > 12) { hour = hour - 12; ampm = 'pm' }
     if (min < 10) {
       min = '0' + min;
     }
-    let time = hour + ':' + min;
-    return time + ampm;
+    let time = (format == 'hh:mm') ? hour + ':' + min
+      : ('hh') ? hour
+        : console.error('timeConverter method error. Check parameters');
+    return (type == 'time') ? time + ampm
+      : (type == 'date') ? `${weatherDate.getMonth() + 1}/${weatherDate.getDate()}`
+        : console.error('timeConverter method error. Check parameters.')
   }
 
   render() {
